@@ -1,5 +1,25 @@
 # LaTeX-Vorlage für die FOM Hochschule für Oekonomie & Management
 
+
+Die größten Änderungen sind:
+
+- Änderungen im Zitationsstil, sodass Artikel aus Sammelwerken ordentlich im Literaturverzeichnis dargestellt, und das Sammelwerk an sich auch aufgeführt wird. Weitere Anpassungen, sodass der Stil besser mit exportierten Inhalten aus Zotero klar kommt und den Kurztitel für das Stichwort verwendet.
+- Formeln nach Leitfaden formatiert, sodass sie um einen Zentimeter eingerückt, und linksbündig sind.
+- Hinzufügen eines Formelverzeichnisses zusammen mit dem Symbolverzeichnis zum "Formel- und Symbolverzeichnis"
+- Anpassungen im Inhaltsverzeichnis, sodass alle Überschriften gleich groß sind und identlische Abstände haben.
+- Zweite Titelseite speziell für Hausarbeiten eingefügt
+- Unterstützung für einen Zweitautor eingebaut (auf Titelseite und Eigenständigkeitserklärung)
+- \todo optimiert, sodass todos auf der linken Seite angezeigt werden
+- Anhangsverzeichnis eingefügt, falls Dozenten dies verlangen
+- Hyperlinks zu Fußnoten reaktiviert (zerstört die Kommasetzung zwischen zwei Fußnoten direkt hintereinander. Stattdessen können mehrere Quellen in eine Fußnote aufgenommen werden, mit: \footcites)
+- Anpassung der Seitenzahl im Header, sodass diese 2cm vom oberen Seitenrand entfernt ist und der Textbody 4cm vom Seitenrand entfernt beginnt.
+- mehrere kleinere Optimierungen, Optionen für weitere Schriftarten, Anpassung der \onehalfspacing sodass der Zeilenabstand dem 1,5-fachen in MS Word entspricht
+
+Englischsprachige Arbeiten habe ich nicht getestet und resultieren wahrscheinlich in Fehlern.
+
+In Kapitel 4 sind aktuelle Beispiele für Tabellen und Formeln hinterlegt, die dem Leitfaden entsprechen.
+
+
 [![Build](https://github.com/andygrunwald/FOM-LaTeX-Template/actions/workflows/Check.yml/badge.svg)](https://github.com/andygrunwald/FOM-LaTeX-Template/actions/workflows/Check.yml)
 
 Eine [LaTeX](https://de.wikipedia.org/wiki/LaTeX)-Vorlage für den persönlichen Gebrauch für Haus-, Seminar-, Bachelor und Master-Arbeiten an der [FOM Hochschule für Oekonomie & Management](https://www.fom.de/).

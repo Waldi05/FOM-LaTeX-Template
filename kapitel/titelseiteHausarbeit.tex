@@ -1,0 +1,54 @@
+\begin{titlepage}
+	\newgeometry{left=2cm, right=2cm, top=2cm, bottom=2cm}
+	\begin{center}
+    \includegraphics[width=2.3cm]{abbildungen/fomLogo} \\
+    \vspace{.5cm}
+		\begin{Large}\textbf{\myHochschulName}\end{Large}\\
+    \vspace{.5cm}
+		\begin{Large}\langde{Hochschulzentrum}\langen{university location} \myHochschulStandort\end{Large}\\
+		\vspace{2cm}
+    \begin{large}{\myThesisArt}\end{large}\\
+    \vspace{.5cm}
+
+		\langde{im Berufsbegleitenden Studiengang}
+		\langen{in the part-time degree program}\\
+		\myStudiengang\\
+		\vspace{0.5cm}
+		\mySemesterZahl. Semester\\
+		\vspace{1.7cm}
+
+		\textbf{im Rahmen des Moduls}\\
+		\textbf{\myModul}\\
+		\vspace{1.8cm}
+		\langde{über das Thema}
+		\langen{on the subject}\\
+    \vspace{0.5cm}
+		\large{\textbf{\myTitel}}\\
+		\vspace{2cm}
+    \langde{von}\langen{by}\\
+    \vspace{0.5cm}
+
+\ifdefined\myAutorzwei
+\begin{Large}{\myAutor} \& {\myAutorzwei}\end{Large}\\
+\else
+\begin{Large}{\myAutor}\end{Large}\\
+\fi
+    
+	\end{center}
+	\normalsize
+	\vfill
+    \begin{tabular}{ l l }
+        \langde{Betreuer} % für Hausarbeiten
+        \langen{Advisor}: & \myBetreuer\\
+	\ifdefined\myAutorzwei
+		\langde{Matrikelnummern}
+        \langen{Matriculation Numbers}: & \myMatrikelNr\ \& \myMatrikelNrzwei\\
+	\else
+		\langde{Matrikelnummer}
+        \langen{Matriculation Number}: & \myMatrikelNr\\
+	\fi
+        \langde{Abgabedatum}
+        \langen{Submission}: & \myAbgabeDatum
+    \\
+    \end{tabular}
+\end{titlepage}

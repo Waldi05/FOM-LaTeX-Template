@@ -129,11 +129,14 @@ Sortierung eines solchens Namens im Literaturverzeichnis einen \enquote{sortkey}
 setzen.
 
 Diese Fussnote soll zeigen, wie mit einer Online-Quelle ohne Jahresangabe
-umgegangen wird\footcite[Vgl.][]{Belastingdienst}.
+umgegangen wird\footcite[Vgl.][o. S.]{Belastingdienst}.
 
 Diese Fußnote\footcite[Vgl.][S.1]{Beckert.2012} ist nur dazu da zu zeigen, wie mit mehreren Quellen des selben Autors aus dem selben Jahr umgegangen wird, wenn das Stichwort gleich bleibt \footcite[Vgl.][S.2]{Beckert.2012.1} oder sich ändert\footcite[Vgl.][S.3]{Beckert.2012.2}. Laut Leitfaden sollte bei gleichem Autor, Jahr und Stichwort ein Buchstabe an die Jahreszahl gehangen werden. Zum Beispiel 2012a. 
 
 Die folgenden Fußnoten dienen dazu zu zeigen, dass die Nummern von zwei direkt aufeinanderfolgende Fußnoten mit Komma getrennt werden.\footcite[Vgl.][S.2]{Beckert.2012.1}\footcite[Vgl.][S. 1]{Lucke2018}
+Das funktioniert allerdings nicht, falls die Links zwischen Fußnote und Referenz im Text aktiviert sind. In diesem Fall werden die beiden Fußnoten schlichweg hintereinander aufgeführt. Es bietet sich hier dann an, mehrere Quellen in einer Fußnote unterzubringen.
+Das ist mit \verb|~\footcites| möglich.~\footcites[\vglf][S. 20-40]{Liljegren2012}[][S. 55]{Balzert0.2008}
+
 \subsection{Abkürzungen}
 Abkürzungen werden mithilfe des Pakets Acronym eingebunden. Alle Abkürzungen sollten in der Datei acronyms.tex mithilfe des \begin{verbatim}
 	\acro

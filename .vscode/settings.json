@@ -35,6 +35,14 @@
         "*.nls*",
         "*.run.xml",
         "*.fdb_latexmk"
+        "*.anh",
+        "*.bbl",
+        "*.loe",
+        "*.sub",
+        "*.suc",
+        "*.syc",
+        "*.sym",
+        "*.tdo"
     ],
     "latex-workshop.latex.tools": [
         {

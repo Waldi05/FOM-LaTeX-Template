@@ -26,19 +26,54 @@ I consent to the upload of this paper to thirdparty servers for the purpose of p
 \par\medskip
 \par\medskip
 
+
+
+\ifdefined\myAutorzwei
+
+\vspace{3cm}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} ccccc}
+		\myOrt, den \today
+		&
+		% Hinterlege deine eingescannte Unterschrift im Verzeichnis /abbildungen und nenne sie unterschrift.png
+		% Bilder mit transparentem Hintergrund können teils zu Problemen führen
+		\raisebox{-2.2em}[0pt][0pt]{\includegraphics[width=0.3\textwidth]{unterschrift}}\vspace*{-0.5em}
+		\\
+		\rule[0.5ex]{12em}{0.55pt} & \rule[0.5ex]{12em}{0.55pt} \\
+		\langde{(Ort, Datum)}\langen{(Location, Date)} & \langde{(Eigenhändige Unterschrift)}\langen{(handwritten signature)}\vspace{2cm}
+		\\
+		\myOrtzwei, den \today
+		&
+		% Hinterlege deine eingescannte Unterschrift im Verzeichnis /abbildungen und nenne sie unterschrift.png
+		% Bilder mit transparentem Hintergrund können teils zu Problemen führen
+		\raisebox{-2.2em}[0pt][0pt]{\includegraphics[width=0.3\textwidth]{unterschriftzwei}}\vspace*{-0.5em}
+		\\
+		\rule[0.5ex]{16em}{0.55pt} & \rule[0.5ex]{12em}{0.55pt} \\
+		\langde{(Ort, Datum)}\langen{(Location, Date)} & \langde{(Eigenhändige Unterschrift)}\langen{(handwritten signature)}
+		\\
+
+	\end{tabular*} \\
+\end{table}
+
+\else
+
 \vspace{5cm}
 
 \begin{table}[H]
 	\centering
 	\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} ccccc}
-		\myOrt, \the\day.\the\month.\the\year
+		\myOrt, den \today
 		&
 		% Hinterlege deine eingescannte Unterschrift im Verzeichnis /abbildungen und nenne sie unterschrift.png
 		% Bilder mit transparentem Hintergrund können teils zu Problemen führen
-		\includegraphics[width=0.35\textwidth]{unterschrift}\vspace*{-0.35cm}
+		\raisebox{-2.2em}[0pt][0pt]{\includegraphics[width=0.3\textwidth]{unterschrift}}\vspace*{-0.5em}
 		\\
 		\rule[0.5ex]{12em}{0.55pt} & \rule[0.5ex]{12em}{0.55pt} \\
 		\langde{(Ort, Datum)}\langen{(Location, Date)} & \langde{(Eigenhändige Unterschrift)}\langen{(handwritten signature)}
 		\\
 	\end{tabular*} \\
 \end{table}
+
+\fi

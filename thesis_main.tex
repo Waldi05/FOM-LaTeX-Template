@@ -9,7 +9,7 @@
 % of Content) aus.
 % Da es aber verschiedene Regelungen je nach Dozent geben kann, werden hier
 % beide Varianten dargestellt.
-\documentclass[12pt,oneside,titlepage,listof=totoc,bibliography=totoc]{scrartcl}
+\documentclass[12pt,oneside,titlepage,listof=totoc,bibliography=totoc,listof=entryprefix]{scrartcl}
 %\documentclass[12pt,oneside,titlepage]{scrartcl}
 
 %-----------------------------------
@@ -18,6 +18,9 @@
 %\def\FOMEN{}% Auskommentieren um die Dokumentensprache auf englisch zu ändern
 \newif\ifde
 \newif\ifen
+\newif\ifshowListOfAppendices
+\showListOfAppendicestrue
+% \showListOfAppendicesfalse
 
 %-----------------------------------
 % Meta informationen
@@ -32,13 +35,16 @@
 \langde{\usepackage[babel,german=quotes]{csquotes}}
 \langen{\usepackage[babel,english=british]{csquotes}}
 \ifde\usepackage[ngerman]{babel}\fi
-\usepackage[T1]{fontenc}
 \usepackage{fancyhdr}
+\usepackage[german, useregional=numeric]{datetime2} %einfachere Datumsangaben
 \usepackage{fancybox}
-\usepackage[a4paper, left=4cm, right=2cm, top=4cm, bottom=2cm]{geometry}
+\usepackage[a4paper, left=4cm, right=2cm, top=3.9cm, bottom=2cm, marginparwidth=3.5cm, marginparsep=0.3cm, headheight=14.5pt, headsep=1.5cm]{geometry}
 \usepackage{graphicx}
 \usepackage{colortbl}
+\renewcommand\familydefault{\sfdefault}
+\usepackage{ragged2e}
 \usepackage[capposition=top]{floatrow}
+\floatsetup{capposition=top, justification=raggedright}
 \usepackage{array}
 \usepackage{float}      %Positionierung von Abb. und Tabellen mit [H] erzwingen
 \usepackage{footnote}
@@ -47,30 +53,109 @@
 % labelfont auf fett: (Tabelle x.y:, Abbildung: x.y)
 % font auf fett: eigentliche Bezeichnung der Abbildung oder Tabelle
 % Fettschrift laut Leitfaden 2018 S. 45
-\usepackage[singlelinecheck=false, labelfont=bf, font=bf]{caption}
 \usepackage{caption}
+\captionsetup{format=plain, singlelinecheck=false, justification=RaggedRight, labelfont=bf, font=bf, aboveskip=12pt, belowskip=6pt}
 \usepackage{enumitem}
 \usepackage{amssymb}
 \usepackage{mathptmx}
-%\usepackage{minted} %Kann für schöneres Syntax Highlighting genutzt werden. ACHTUNG: Python muss installiert sein.
-\usepackage[scaled=0.9]{helvet} % Behebt, zusammen mit Package courier, pixelige Überschriften. Ist, zusammen mit mathptx, dem times-Package vorzuziehen. Details: https://latex-kurs.de/fragen/schriftarten/Times_New_Roman.html
-\usepackage{courier}
+\usepackage{minted} %Kann für schöneres Syntax Highlighting genutzt werden. ACHTUNG: Python muss installiert sein.
 \usepackage{amsmath}
-\usepackage[table]{xcolor}
-\usepackage{marvosym}			% Verwendung von Symbolen, z.B. perfektes Eurozeichen
+\usepackage{lmodern}
+\usepackage[T1]{fontenc} %% Schriftartoptionen:
+%\usepackage[scaled=0.91]{helvet} % Behebt, zusammen mit Package courier, pixelige Überschriften. Ist, zusammen mit mathptx, dem times-Package vorzuziehen. Details: https://latex-kurs.de/fragen/schriftarten/Times_New_Roman.html
+%\usepackage{courier}
+%\usepackage{inter}
+%\renewcommand{\familydefault}{\sfdefault}
+\usepackage{fontspec}
+\setmainfont[Scale=0.9]{TeX Gyre Heros} % Helvetica Klon 
+\setmonofont{Courier New}
+\usepackage[mathrm=sym]{unicode-math}
+%\setmathfont{XITS Math}
+%\setmathfont{Latin Modern Math}
+\setmathfont{TeX Gyre Pagella Math} % Schola, Termes, Bonum
 
-\renewcommand\familydefault{\sfdefault}
-\usepackage{ragged2e}
+\usepackage[table]{xcolor}
+\usepackage{marvosym}% Verwendung von Symbolen, z.B. perfektes Eurozeichen
+\usepackage{wrapfig} % Bilder im Text mit Textumbruch
+
+\usepackage{changepage} % Für die korrekte Einrückung von 1cm bei Formeln
+
+%-----------------------------------
+% Formelverzeichnis
+%-----------------------------------
+\DeclareNewTOC[%
+tocentryindent   = 1.5em,
+tocentrynumwidth = 5em,
+name=Formel,
+type=xequation,
+nonfloat
+]{loe}
+
+\AtBeginDocument{%
+\newcaptionname{ngerman}\xequationname{Formel}%
+\newcaptionname{ngerman}\listxequationname{Formel- und Symbolverzeichnis}%
+}
+
+
+%-----------------------------------
+% Überschriften auf 12pt setzen
+% Absatz – 12pt davor, 6pt danach
+%-----------------------------------
+\addtokomafont{section}{\fontsize{12}{21.6}\selectfont}
+\addtokomafont{subsection}{\fontsize{12}{21.6}\selectfont}
+\addtokomafont{subsubsection}{\fontsize{12}{21.6}\selectfont}
+\addtokomafont{paragraph}{\fontsize{12}{21.6}\selectfont}
+\addtokomafont{subparagraph}{\fontsize{12}{21.6}\selectfont}
+
+% Abstände vor (beforeskip) und nach (afterskip) Überschriften
+% Negativer beforeskip-Wert verhindert Einrückung der ersten Zeile nach der Überschrift
+\RedeclareSectionCommand[beforeskip=12pt, afterskip=6pt]{section}
+\RedeclareSectionCommand[beforeskip=12pt, afterskip=6pt]{subsection}
+\RedeclareSectionCommand[beforeskip=12pt, afterskip=6pt]{subsubsection}
+\RedeclareSectionCommand[beforeskip=12pt, afterskip=6pt]{paragraph}
+\RedeclareSectionCommand[beforeskip=12pt, afterskip=6pt]{subparagraph}
+
+
+%% Anpassen der Überschriften im Inhaltsverzeichnis
+% Abstände zwischen den Überschriften können hier für jede Ebene separat bestimmt werden
+\RedeclareSectionCommand[tocbeforeskip=0pt]{section}
+\RedeclareSectionCommand[tocbeforeskip=0pt]{subsection}
+\RedeclareSectionCommand[tocbeforeskip=0pt]{subsubsection}
+\RedeclareSectionCommand[tocbeforeskip=0pt]{paragraph}
+\RedeclareSectionCommand[tocbeforeskip=0pt]{subparagraph}
+
+%section Überschriften werden hier in normaler Schrift dargestellt und es werden linefill Punkte hinzugefügt
+\DeclareTOCStyleEntry[
+  entryformat=\normalfont,
+  pagenumberformat=\normalfont,
+  linefill=\TOCLineLeaderFill
+]{tocline}{section}
+
+\DeclareTOCStyleEntry[
+  entryformat=\normalfont,
+  pagenumberformat=\normalfont
+]{tocline}{subsection}
+
+\DeclareTOCStyleEntry[
+  entryformat=\normalfont,
+  pagenumberformat=\normalfont
+]{tocline}{subsubsection}
+
+\newlength{\originalintextsep}
+\setlength{\originalintextsep}{\intextsep} % \intextsep kann mit \setlength{\intextsep}{0pt} auf 0pt gesetzt werden z.B. vor wrapfigure % Margen über und unter der wrapfigure entfernen
+% reset mit \setlength{\intextsep}{\originalintextsep}
 
 % Mehrere Fussnoten nacheinander mit Komma separiert
 \usepackage[hang,multiple]{footmisc}
 \setlength{\footnotemargin}{1em}
+\setlength{\skip\footins}{1.5em plus 0.3em minus 0.5em}
 
 % todo Aufgaben als Kommentare verfassen für verschiedene Editoren
-\usepackage{todonotes}
-
+\usepackage[textsize=tiny, colorinlistoftodos, tickmarkheight=5pt]{todonotes}
+\setlength{\marginparwidth}{3.5cm}
+\reversemarginpar
 % Verhindert, dass nur eine Zeile auf der nächsten Seite steht
-\setlength{\marginparwidth}{2cm}
+%\setlength{\marginparwidth}{2cm}
 \usepackage[all]{nowidow}
 
 %-----------------------------------
@@ -91,6 +176,8 @@
 \usepackage{rotating} % vertikal schreiben
 \usepackage{mdwlist}
 \usepackage{tabularx}% für Breitenangabe
+
+\setlength{\originalintextsep}{\intextsep}
 
 %-----------------------------------
 % sauber formatierter Quelltext
@@ -119,7 +206,7 @@
 	numbersep=5pt,
 	breaklines=true,
 	showstringspaces=false,
-	frame=l ,
+	frame=l,
 	xleftmargin=5pt,
 	xrightmargin=5pt,
 	basicstyle=\ttfamily\scriptsize,
@@ -182,7 +269,7 @@
 			mincrossrefs = 1
 		]{biblatex}%iso dateformat für YYYY-MM-DD
         %weitere Anpassungen für BibLaTex
-        \input{skripte/modsBiblatex2018}
+        \input{skripte/modsBiblatexZotero}
     }{
         \ifthenelse{\equal{\citationstyle}{fom_alt}}{
             % Einstellungen für Alter Leitfaden
@@ -212,6 +299,25 @@
 % siehe Leitfaden S. 14
 \AtBeginBibliography{\singlespacing}
 
+% -------------------------------------------------------
+% Anhangsverzeichnis definieren
+% -------------------------------------------------------
+\DeclareNewTOC[
+  owner    = \jobname,
+  listname = {Anhangsverzeichnis},
+  tocentryindent   = 1.5em,
+  tocentrynumwidth = 2.3em,
+]{anh}
+
+\makeatletter
+\newcommand*{\useAnhangTOC}{ % \useAnhangTOC wechselt für alle folgenden sections die Aufnahme in das Anhangsverzeichnis
+  \renewcommand*{\ext@toc}{anh}%
+}
+\newcommand{\useMainTOC}{ % \useMainTOC wachselt wieder zurück, sodass alles weitere wieder im Inhaltsverzeichnis erscheint
+	\renewcommand*{\ext@toc}{toc}
+}
+\makeatother
+
 %-----------------------------------
 % Silbentrennung (Vgl. Leitfaden S.17) 
 %-----------------------------------
@@ -220,8 +326,8 @@
 \HyphSubstLet{ngerman}{ngerman-x-latest}}{}
 \usepackage{microtype}
 
-\hyphenpenalty=5000 % Minimiert die Trennung
-\exhyphenpenalty=5000 % Minimiert die Trennung am Zeilenende
+\hyphenpenalty=100 % reduziert die Trennung
+\exhyphenpenalty=2000 % Minimiert die doppelte Trennung
 
 %-----------------------------------
 % Pfad fuer Abbildungen
@@ -242,13 +348,14 @@
 % Zeilenabstand 1,5-zeilig
 %-----------------------------------
 \usepackage{setspace}
-\onehalfspacing
+%\onehalfspacing
+\setstretch{1.4} % setstretch statt \onehalfspacing um die Abstände von MS besser nachzuahmen
 
 %-----------------------------------
 % Absätze durch eine neue Zeile
 %-----------------------------------
 \setlength{\parindent}{0mm}
-\setlength{\parskip}{0.8em plus 0.5em minus 0.3em}
+\setlength{\parskip}{0.5em plus 0.3em minus 0.2em}
 
 \sloppy					%Abstände variieren
 \pagestyle{headings}
@@ -259,6 +366,8 @@
 \KOMAoption{listof}{entryprefix} % Siehe KOMA-Script Doku v3.28 S.153
 \BeforeStartingTOC[lof]{\renewcommand*\autodot{:}} % Für den Doppelpunkt hinter Präfix im Abbildungsverzeichnis
 \BeforeStartingTOC[lot]{\renewcommand*\autodot{:}} % Für den Doppelpunkt hinter Präfix im Tabellenverzeichnis
+\BeforeStartingTOC[anh]{\renewcommand*\autodot{:}} % Für den Doppelpunkt hinter Präfix im Anhangsverzeichnis
+\BeforeStartingTOC[loe]{\renewcommand*\autodot{:}} % Für den Doppelpunkt hinter Präfix im Formelverzeichnis
 
 %-----------------------------------
 % Abkürzungsverzeichnis
@@ -282,13 +391,26 @@
 %-----------------------------------
 % PDF Meta Daten setzen
 %-----------------------------------
-\usepackage[hyperfootnotes=false]{hyperref} %hyperfootnotes=false deaktiviert die Verlinkung der Fußnote. Ansonsten inkompaibel zum Paket "footmisc"
+\usepackage[hyperfootnotes=true]{hyperref} %Testweise Fußnoten-Links reaktiviert, im Zeifel wieder deaktivieren 
+%hyperfootnotes=false deaktiviert die Verlinkung der Fußnote. Ansonsten inkompaibel zum Paket "footmisc"
+% Wenn hyperfootnotes=true oder \usepackage{footnotebackref}, dann wird das Komma zwischen zwei an der selben Stelle gesetzten Fußnoten entfernt
 % Behebt die falsche Darstellung der Lesezeichen in PDF-Dateien, welche eine Übersetzung besitzen
 % siehe Issue 149
+\usepackage{footnotebackref} % Dieses Paket setzt links von der Zahl der Fußnote zurück zur Zahl im Text (mit hyperref
+\usepackage[all]{hypcap}
 \makeatletter
 \pdfstringdefDisableCommands{\let\selectlanguage\@gobble}
 \makeatother
-
+\ifdefined\myAutorzwei
+\hypersetup{
+    pdfinfo={
+        Title={\myTitel},
+        Subject={\myStudiengang},
+        Author={\myAutor {, } \myAutorzwei},
+        Build=1.1
+    }
+}
+\else
 \hypersetup{
     pdfinfo={
         Title={\myTitel},
@@ -297,6 +419,8 @@
         Build=1.1
     }
 }
+\fi
+
 
 %-----------------------------------
 % PlantUML
@@ -332,11 +456,12 @@
 
 % Seitenzahl oben, mittig, entsprechend Leitfaden ohne Striche beidseits
 \fancyhead[C]{\thepage}
+
 %\fancyhead[L]{\leftmark}							% kein Footer vorhanden
 % Waagerechte Linie unterhalb des Kopfbereiches anzeigen. Laut Leitfaden ist
 % diese Linie nicht erforderlich. Ihre Breite kann daher auf 0pt gesetzt werden.
-\renewcommand{\headrulewidth}{0.4pt}
-%\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0pt}
 
 %-----------------------------------
 % Damit die hochgestellten Zahlen auch auf die Fußnote verlinkt sind (siehe Issue 169)
@@ -344,6 +469,7 @@
 \hypersetup{colorlinks=true, breaklinks=true, linkcolor=darkblack, citecolor=darkblack, menucolor=darkblack, urlcolor=darkblack, linktoc=all, bookmarksnumbered=false, pdfpagemode=UseOutlines, pdftoolbar=true}
 \urlstyle{same}%gleiche Schriftart für den Link wie für den Text
 
+\usepackage{layout}
 %-----------------------------------
 % Start the document here:
 %-----------------------------------
@@ -358,10 +484,15 @@
 %-----------------------------------
 \input{skripte/textcommands}
 
+%Verzeichnis der Todos
+
+\listoftodos[Anmerkungen]
+\newpage
+
 %-----------------------------------
 % Titlepage
 %-----------------------------------
-\input{kapitel/titelseite}
+\input{kapitel/titelseiteHausarbeit}
 
 %-----------------------------------
 % Vorwort (optional; bei Verwendung beide Zeilen entkommentieren und unter Inhaltsverzeichnis setcounter entsprechend anpassen)
@@ -376,7 +507,11 @@
 \setcounter{page}{2}
 \addtocontents{toc}{\protect\enlargethispage{-20mm}}% Die Zeile sorgt dafür, dass das Inhaltsverzeichnisseite auf die zweite Seite gestreckt wird und somit schick aussieht. Das sollte eigentlich automatisch funktionieren. Wer rausfindet wie, kann das gern ändern.
 \setcounter{tocdepth}{4}
+{
+\setstretch{1.3} %Zeilenabstand im Inhaltsverzeichnis reduzieren
 \tableofcontents
+} % Setzt die Zeilenhöhe auf 1,2 statt 1,4 wie es für den Textteil festgelegt ist, um die Zeilenhöhe von 1,5 aus Word möglichst genau wiederzugeben
+%\tableofcontents
 \newpage
 
 %-----------------------------------
@@ -399,14 +534,28 @@
 \newpage
 
 %-----------------------------------
+% Formelverzeichnis
+%-----------------------------------
+\listofxequations
+
+\vspace{1em}
+
+%-----------------------------------
 % Symbolverzeichnis
 %-----------------------------------
 % In Overleaf führt der Einsatz des Symbolverzeichnisses zu einem Fehler, der aber ignoriert werdne kann
 % Falls das Symbolverzeichnis nicht im Inhaltsverzeichnis angezeigt werden soll
 % dann folgende Zeile auskommentieren.
-\phantomsection\addcontentsline{toc}{section}{\symheadingname}
+%\phantomsection\addcontentsline{toc}{section}{\symheadingname}
 \input{skripte/symbolDef}
-\listofsymbols
+\makeatletter
+\begingroup
+  \renewcommand{\symheadingname}{}%
+  \let\section\@gobble%
+  \vspace{6pt}%
+  \listofsymbols
+\endgroup
+\makeatother
 \newpage
 
 %-----------------------------------
@@ -419,6 +568,7 @@
 % Sperrvermerk
 %-----------------------------------
 %\input{kapitel/anhang/sperrvermerk}
+
 
 %-----------------------------------
 % Seitennummerierung auf arabisch und ab 1 beginnend umstellen
@@ -435,12 +585,24 @@
 
 %TC:ignore - ignoriert die folgnden Wörter beim Wordcount in Overleaf
 
+%\listoftodos[Anmerkungen]
+
 %-----------------------------------
 % Apendix / Anhang
 %-----------------------------------
 \newpage
 \section*{\AppendixName} %Überschrift "Anhang", ohne Nummerierung
 \addcontentsline{toc}{section}{\AppendixName} %Den Anhang ohne Nummer zum Inhaltsverzeichnis hinzufügen
+
+% --- Anhangsverzeichnis ---
+\ifshowListOfAppendices
+    \listofanhs
+    \clearpage
+\fi
+
+\appendix
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
+\useAnhangTOC
 
 \begin{appendices}
 % Nachfolgende Änderungen erfolgten aufgrund von Issue 163
@@ -453,6 +615,8 @@
 	\input{kapitel/anhang/anhang}
 \end{appendices}
 \addtocontents{toc}{\protect\setcounter{tocdepth}{2}}
+
+\useMainTOC
 
 %-----------------------------------
 % Literaturverzeichnis
@@ -506,6 +670,7 @@
 %\printbibliography[type=online,heading=bibintoc,title={\headingNameInternetSources}]
 \printbibliography[type=online,heading=subbibliography,title={\headingNameInternetSources}]
 
+\input{kapitel/anhang/ki}
 \input{kapitel/anhang/erklaerung}
 \end{document}
 
