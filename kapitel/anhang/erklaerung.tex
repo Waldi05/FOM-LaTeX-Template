@@ -26,7 +26,85 @@ I consent to the upload of this paper to thirdparty servers for the purpose of p
 \par\medskip
 \par\medskip
 
+\ifdefined\myAutorvier
 
+\vspace{1cm}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} ccccc}
+		% Zeile 1
+		\myOrt, den \today
+		&
+		\raisebox{-2.2em}[0pt][0pt]{\includegraphics[width=0.3\textwidth]{unterschrift}}\vspace*{-0.5em}
+		\\
+		\rule[0.5ex]{12em}{0.55pt} & \rule[0.5ex]{12em}{0.55pt} \\
+		\langde{(Ort, Datum)}\langen{(Location, Date)} & \langde{(Eigenhändige Unterschrift)}\langen{(handwritten signature)}
+		\\[1cm]
+		% Zeile 2
+		\myOrtzwei, den \today
+		&
+		\raisebox{-2.2em}[0pt][0pt]{\includegraphics[width=0.3\textwidth]{unterschriftzwei}}\vspace*{-0.5em}
+		\\
+		\rule[0.5ex]{12em}{0.55pt} & \rule[0.5ex]{12em}{0.55pt} \\
+		\langde{(Ort, Datum)}\langen{(Location, Date)} & \langde{(Eigenhändige Unterschrift)}\langen{(handwritten signature)}
+		\\[1cm]
+		% Zeile 3
+		\myOrtdrei, den \today
+		&
+		\raisebox{-2.2em}[0pt][0pt]{\includegraphics[width=0.3\textwidth]{unterschriftdrei}}\vspace*{-0.5em}
+		\\
+		\rule[0.5ex]{12em}{0.55pt} & \rule[0.5ex]{12em}{0.55pt} \\
+		\langde{(Ort, Datum)}\langen{(Location, Date)} & \langde{(Eigenhändige Unterschrift)}\langen{(handwritten signature)}
+		\\[1cm]
+		% Zeile 4
+		\myOrtvier, den \today
+		&
+		\raisebox{-2.2em}[0pt][0pt]{\includegraphics[width=0.3\textwidth]{unterschriftvier}}\vspace*{-0.5em}
+		\\
+		\rule[0.5ex]{16em}{0.55pt} & \rule[0.5ex]{12em}{0.55pt} \\
+		\langde{(Ort, Datum)}\langen{(Location, Date)} & \langde{(Eigenhändige Unterschrift)}\langen{(handwritten signature)}
+		\\
+
+	\end{tabular*} \\
+\end{table}
+\else
+
+\ifdefined\myAutordrei
+
+\vspace{2cm}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}} ccccc}
+		% Zeile 1
+		\myOrt, den \today
+		&
+		\raisebox{-2.2em}[0pt][0pt]{\includegraphics[width=0.3\textwidth]{unterschrift}}\vspace*{-0.5em}
+		\\
+		\rule[0.5ex]{12em}{0.55pt} & \rule[0.5ex]{12em}{0.55pt} \\
+		\langde{(Ort, Datum)}\langen{(Location, Date)} & \langde{(Eigenhändige Unterschrift)}\langen{(handwritten signature)}
+		\\[1.5cm]
+		% Zeile 2
+		\myOrtzwei, den \today
+		&
+		\raisebox{-2.2em}[0pt][0pt]{\includegraphics[width=0.3\textwidth]{unterschriftzwei}}\vspace*{-0.5em}
+		\\
+		\rule[0.5ex]{12em}{0.55pt} & \rule[0.5ex]{12em}{0.55pt} \\
+		\langde{(Ort, Datum)}\langen{(Location, Date)} & \langde{(Eigenhändige Unterschrift)}\langen{(handwritten signature)}
+		\\[1.5cm]
+		% Zeile 3
+		\myOrtdrei, den \today
+		&
+		\raisebox{-2.2em}[0pt][0pt]{\includegraphics[width=0.3\textwidth]{unterschriftdrei}}\vspace*{-0.5em}
+		\\
+		\rule[0.5ex]{16em}{0.55pt} & \rule[0.5ex]{12em}{0.55pt} \\
+		\langde{(Ort, Datum)}\langen{(Location, Date)} & \langde{(Eigenhändige Unterschrift)}\langen{(handwritten signature)}
+		\\
+
+	\end{tabular*} \\
+\end{table}
+\else
 
 \ifdefined\myAutorzwei
 
@@ -76,4 +154,6 @@ I consent to the upload of this paper to thirdparty servers for the purpose of p
 	\end{tabular*} \\
 \end{table}
 
+\fi
+\fi
 \fi
