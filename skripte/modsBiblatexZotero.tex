@@ -258,10 +258,11 @@
 % wenn es keinen solchen Eintrag gibt, dann auch nicht ausgeben, z.B. 'o. S.'
 % Wenn man das will, kann man das 'o. S.' ja explizit angeben. Andernfalls steht
 % sonst auch bei Webseiten 'o. S.' da, was laut Leitfaden nicht ok ist.
+% Dies ist im Leitfaden von 2024 nicht mehr aktuell, siehe Seite 35.
 \renewbibmacro*{postnote}{%
   \setunit{\postnotedelim}%
   \iffieldundef{postnote}
-    {} %{\printtext{\langde{o.S\adddot}\langen{no page number}}}
+    {\printtext{\langde{o. S\adddot}\langen{no page number}}}
     {\printfield{postnote}}}
 
 % Abstand bei Änderung Anfangsbuchstabe ca. 1.5 Zeilen
@@ -288,3 +289,45 @@
      \usebibmacro{cite:labeldate+extradate}}}}
    {\usebibmacro{cite:shorthand}}}
 
+% Kurzen Journal Titel statt dem langen verwenden
+\renewbibmacro*{journal}{%
+  \iffieldundef{shortjournal}{%
+  \iffieldundef{journaltitle}%
+    {}%
+    {\printtext[journaltitle]{%
+       \printfield[titlecase]{journaltitle}%
+       \setunit{\subtitlepunct}%
+       \printfield[titlecase]{journalsubtitle}}}%
+  }{%
+    \printtext[journaltitle]{\printfield[titlecase]{shortjournal}}%
+  }%
+}%
+
+\DeclareCiteCommand{\lawcite} %Gesetze können, wie im Leitfaden verlangt ordentlich zitiert werden.
+  {}
+  {%
+    \usebibmacro{citeindex}%
+    \printtext{%
+      \printfield{postnote}%
+      \setunit{\addspace}%
+      \printfield{shorttitle}%
+    }%
+  }
+  {\multicitedelim}
+  {}
+\DeclareFieldFormat[legislation]{date}{%
+  \iffieldundef{year}
+    {}
+    {\thefield{day}.\thefield{month}.\thefield{year}}%
+}
+\DeclareBibliographyDriver{legislation}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \printtext[emph]{\printfield{title}}%
+  \setunit{\addspace}%
+\iffieldundef{shorttitle}{}{\printtext[emph]{(\printfield{shorttitle})}}%
+  \setunit{\addspace vom \addspace}%
+  \usebibmacro{date}
+  \setunit{\addcomma\space}%
+  \printfield{note}%
+  \finentry}
