@@ -3,6 +3,7 @@
 
 Die größten Änderungen sind:
 
+- Änderung der Schriftart zu der Tex-Gyre Familie (tex-gyre und tex-gyre-math müssen installiert werden)
 - Änderungen im Zitationsstil, sodass Artikel aus Sammelwerken ordentlich im Literaturverzeichnis dargestellt, und das Sammelwerk an sich auch aufgeführt wird. Weitere Anpassungen, sodass der Stil besser mit exportierten Inhalten aus Zotero klar kommt und den Kurztitel für das Stichwort verwendet.
 - Formeln nach Leitfaden formatiert, sodass sie um einen Zentimeter eingerückt, und linksbündig sind.
 - Hinzufügen eines Formelverzeichnisses zusammen mit dem Symbolverzeichnis zum "Formel- und Symbolverzeichnis"
