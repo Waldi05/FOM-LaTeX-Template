@@ -372,7 +372,7 @@ nonfloat
 %-----------------------------------
 % Abkürzungsverzeichnis
 %-----------------------------------
-\usepackage[printonlyused]{acronym}
+\usepackage[]{acronym}
 
 %-----------------------------------
 % Symbolverzeichnis
@@ -466,6 +466,40 @@ nonfloat
 	{ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
 	{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
 	{€}{{\EUR}}1 {£}{{\pounds}}1 {„}{{\glqq{}}}1
+}
+
+% Autoren im Anhang auflisten
+\usepackage{etoc}
+\usepackage{xparse}
+
+% Autoren speichern
+\newcounter{authrow}
+\NewDocumentCommand{\authorentry}{m}{%
+  \expandafter\gdef\csname auth@\theauthrow\endcsname{#1}%
+  \stepcounter{authrow}%
+}
+\newcounter{authprint}
+
+% Autorliste drucken
+\newcommand{\printauthlist}{%
+  \setcounter{authprint}{0}
+  \etocsettocstyle{}{}
+
+  \etocsetstyle{section}
+    {}{}{%
+      \stepcounter{authprint}%
+      \etocnumber\quad
+      \etocname\dotfill
+      \csname auth@\theauthprint\endcsname\par
+    }{}
+  \etocsetstyle{subsection}
+    {}{}{%
+      \stepcounter{authprint}%
+      \hspace{2em}% indent subsections
+      \etocnumber\quad
+      \etocname\dotfill
+      \csname auth@\theauthprint\endcsname\par
+    }{}
 }
 
 %-----------------------------------
